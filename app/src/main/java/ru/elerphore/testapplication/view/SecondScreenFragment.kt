@@ -1,4 +1,6 @@
 package ru.elerphore.testapplication.view
 
-class SecondScreenFragment {
-}
+import androidx.fragment.app.Fragment
+import ru.elerphore.testapplication.R
+
+class SecondScreenFragment : Fragment(R.layout.second_screen)
