@@ -62,7 +62,8 @@
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/lottie"
-                app:lottie_speed="4" />
+                app:lottie_repeatMode="reverse"
+                app:lottie_speed="1" />
 
             <LinearLayout
                 android:id="@+id/constraintLayout"
