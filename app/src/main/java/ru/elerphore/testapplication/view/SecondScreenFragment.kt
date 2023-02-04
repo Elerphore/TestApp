@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.elerphore.testapplication.R
 import ru.elerphore.testapplication.databinding.SecondScreenBinding
+import ru.elerphore.testapplication.extension.generateSecondsInRange
 import ru.elerphore.testapplication.extension.toPercentage
 
 class SecondScreenFragment : Fragment(R.layout.second_screen) {
@@ -38,8 +39,8 @@ class SecondScreenFragment : Fragment(R.layout.second_screen) {
             })
 
             randomizeButton.setOnClickListener {
-                progressBar2.fakeLoading(((5..25).random() * 1000).toLong())
-                progressBar3.fakeLoading(((5..25).random() * 1000).toLong())
+                progressBar2.fakeLoading(Long.generateSecondsInRange())
+                progressBar3.fakeLoading(Long.generateSecondsInRange())
             }
 
         }
