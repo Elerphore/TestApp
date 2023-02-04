@@ -5,9 +5,9 @@ import android.view.animation.LinearInterpolator
 import android.widget.ProgressBar
 
 
-fun ProgressBar.fakeLoading() {
+fun ProgressBar.fakeLoading(duration: Long = 14000) {
     val animator = ObjectAnimator.ofInt(this, "progress", 0, 100)
-    animator.duration = 14000
+    animator.duration = duration
     animator.interpolator = LinearInterpolator()
     animator.start()
 }

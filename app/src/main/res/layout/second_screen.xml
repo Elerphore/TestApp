@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintEnd_toEndOf="@+id/progressBar2" />
 
-    <ProgressBar
+    <SeekBar
         android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
@@ -42,7 +42,6 @@
         android:max="100"
         android:minHeight="50dp"
         android:progress="62"
-        android:scaleY="6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,7 +56,7 @@
         app:layout_constraintStart_toStartOf="@+id/progressBar3" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/secondProgressBarState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"
@@ -66,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="@+id/progressBar3" />
 
 
-    <ProgressBar
+    <SeekBar
         android:layout_marginTop="25dp"
         android:id="@+id/progressBar3"
         style="?android:attr/progressBarStyleHorizontal"
@@ -75,12 +74,11 @@
         android:max="100"
         android:minHeight="50dp"
         android:progress="30"
-        android:scaleY="6"
         app:layout_constraintTop_toBottomOf="@+id/progressBar2"
         tools:layout_editor_absoluteX="12dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/randomizeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ramdomize values"
@@ -94,7 +92,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2">
+        app:layout_constraintTop_toBottomOf="@+id/randomizeButton">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

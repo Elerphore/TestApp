@@ -44,10 +44,17 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
             }
 
             customerAlert.setOnClickListener {
+                var dialog: AlertDialog? = null
                 val builder = AlertDialog.Builder(requireContext())
+                val view = CustomAlertDialogBinding.inflate(layoutInflater)
+                view.closeButton.setOnClickListener {
+                    dialog?.cancel()
+                }
+                builder.setView(view.root)
 
-                builder.setView(CustomAlertDialogBinding.inflate(layoutInflater).root)
-                builder.create().show()
+                dialog = builder.create()
+                dialog.setCancelable(false)
+                dialog.show()
             }
 
         }
