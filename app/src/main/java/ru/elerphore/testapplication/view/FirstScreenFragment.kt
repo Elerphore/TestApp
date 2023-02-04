@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.elerphore.testapplication.R
+import ru.elerphore.testapplication.adapter.ProgressBarAdapter
 import ru.elerphore.testapplication.databinding.CustomAlertDialogBinding
 import ru.elerphore.testapplication.databinding.FirstScreenBinding
 import ru.elerphore.testapplication.extension.toPercentage
@@ -23,25 +24,11 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
             goButton.setOnClickListener { findNavController().navigate(R.id.action_FirstScreen_to_SecondScreen) }
             progressBar.fakeLoading()
 
-            progressBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    progressBarPercentage.text = progress.toPercentage()
-                }
-                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-            })
+            progressBar.setOnSeekBarChangeListener(ProgressBarAdapter(progressBarPercentage))
 
-            startAnimationButton.setOnClickListener {
-                animationLottie.playAnimation()
-            }
-
-            stopAnimationButton.setOnClickListener {
-                animationLottie.cancelAnimation()
-            }
-
-            hideShowAnimationButton.setOnClickListener {
-                animationLottie.isVisible = !firstScreenFragment.animationLottie.isVisible
-            }
+            startAnimationButton.setOnClickListener { animationLottie.playAnimation() }
+            stopAnimationButton.setOnClickListener { animationLottie.cancelAnimation() }
+            hideShowAnimationButton.setOnClickListener { animationLottie.isVisible = !firstScreenFragment.animationLottie.isVisible }
 
             customerAlert.setOnClickListener {
                 var dialog: AlertDialog? = null
