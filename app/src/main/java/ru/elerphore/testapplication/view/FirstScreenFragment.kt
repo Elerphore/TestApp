@@ -1,5 +1,6 @@
 package ru.elerphore.testapplication.view
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
@@ -8,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.elerphore.testapplication.R
+import ru.elerphore.testapplication.databinding.CustomAlertDialogBinding
 import ru.elerphore.testapplication.databinding.FirstScreenBinding
 import ru.elerphore.testapplication.extension.toPercentage
 
@@ -40,6 +42,14 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
             hideShowAnimationButton.setOnClickListener {
                 animationLottie.isVisible = !firstScreenFragment.animationLottie.isVisible
             }
+
+            customerAlert.setOnClickListener {
+                val builder = AlertDialog.Builder(requireContext())
+
+                builder.setView(CustomAlertDialogBinding.inflate(layoutInflater).root)
+                builder.create().show()
+            }
+
         }
     }
 }
