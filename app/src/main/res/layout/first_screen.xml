@@ -25,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="@+id/progressBar" />
 
 
-    <ProgressBar
+    <SeekBar
         android:progress="75"
         android:max="100"
         android:id="@+id/progressBar"
