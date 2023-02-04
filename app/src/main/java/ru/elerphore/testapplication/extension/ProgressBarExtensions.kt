@@ -1,4 +1,4 @@
-package ru.elerphore.testapplication.view
+package ru.elerphore.testapplication.extension
 
 import android.animation.ObjectAnimator
 import android.view.animation.LinearInterpolator

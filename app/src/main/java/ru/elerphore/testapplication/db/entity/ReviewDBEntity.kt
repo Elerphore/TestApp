@@ -1,10 +1,9 @@
-package ru.elerphore.testapplication.entity
+package ru.elerphore.testapplication.db.entity
 
 import androidx.room.Entity
 
-@Entity
+@Entity("Review")
 data class ReviewDBEntity(
-    val id: Int,
     val image: String,
     val title: String,
 )
