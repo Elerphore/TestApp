@@ -5,5 +5,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [ReviewDBEntity::class], version = 1)
 abstract class ReviewRepository : RoomDatabase() {
+
     abstract fun reviewDao() : ReviewDao
+
 }

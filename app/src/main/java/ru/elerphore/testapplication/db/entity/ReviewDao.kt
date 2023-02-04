@@ -2,7 +2,6 @@ package ru.elerphore.testapplication.db.entity
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -14,6 +13,6 @@ interface ReviewDao {
     @Insert
     fun insertAll(reviews: List<ReviewDBEntity>)
 
-    @Delete
+    @Query("delete from Review")
     fun deleteAll()
 }
