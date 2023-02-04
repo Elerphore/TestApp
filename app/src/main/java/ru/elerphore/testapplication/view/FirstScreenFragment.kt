@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.elerphore.testapplication.R
@@ -26,6 +28,19 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
             override fun onStopTrackingTouch(seekBar: SeekBar?) {}
         })
+
+        firstScreenFragment.startAnimationButton.setOnClickListener {
+            firstScreenFragment.animationLottie.playAnimation()
+        }
+
+        firstScreenFragment.stopAnimationButton.setOnClickListener {
+            firstScreenFragment.animationLottie.cancelAnimation()
+        }
+
+        firstScreenFragment.hideShowAnimationButton.setOnClickListener {
+            firstScreenFragment.animationLottie.isVisible = !firstScreenFragment.animationLottie.isVisible
+        }
+
 
     }
 }

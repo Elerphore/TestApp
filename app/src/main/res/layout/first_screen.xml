@@ -29,7 +29,6 @@
         android:progress="75"
         android:max="100"
         android:id="@+id/progressBar"
-        android:scaleY="6"
         android:minHeight="50dp"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
