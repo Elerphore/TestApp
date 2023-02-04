@@ -15,6 +15,7 @@
         app:layout_constraintStart_toStartOf="@+id/progressBar" />
 
     <TextView
+        android:id="@+id/progressBarPercentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10dp"
