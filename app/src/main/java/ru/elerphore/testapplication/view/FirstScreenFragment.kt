@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -17,30 +16,30 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        firstScreenFragment = FirstScreenBinding.bind(view)
-        firstScreenFragment.goButton.setOnClickListener { findNavController().navigate(R.id.action_FirstScreen_to_SecondScreen) }
-        firstScreenFragment.progressBar.fakeLoading()
 
-        firstScreenFragment.progressBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                firstScreenFragment.progressBarPercentage.text = progress.toPercentage()
+        with(FirstScreenBinding.bind(view)) {
+            goButton.setOnClickListener { findNavController().navigate(R.id.action_FirstScreen_to_SecondScreen) }
+            progressBar.fakeLoading()
+
+            progressBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    progressBarPercentage.text = progress.toPercentage()
+                }
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            })
+
+            startAnimationButton.setOnClickListener {
+                animationLottie.playAnimation()
             }
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
-        })
 
-        firstScreenFragment.startAnimationButton.setOnClickListener {
-            firstScreenFragment.animationLottie.playAnimation()
+            stopAnimationButton.setOnClickListener {
+                animationLottie.cancelAnimation()
+            }
+
+            hideShowAnimationButton.setOnClickListener {
+                animationLottie.isVisible = !firstScreenFragment.animationLottie.isVisible
+            }
         }
-
-        firstScreenFragment.stopAnimationButton.setOnClickListener {
-            firstScreenFragment.animationLottie.cancelAnimation()
-        }
-
-        firstScreenFragment.hideShowAnimationButton.setOnClickListener {
-            firstScreenFragment.animationLottie.isVisible = !firstScreenFragment.animationLottie.isVisible
-        }
-
-
     }
 }
