@@ -1,6 +1,7 @@
 package ru.elerphore.testapplication.view
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import ru.elerphore.testapplication.db.entity.ReviewDBEntity
 import ru.elerphore.testapplication.db.entity.dtoEntity
 import ru.elerphore.testapplication.extension.fakeLoading
 import ru.elerphore.testapplication.extension.generateSecondsInRange
+import ru.elerphore.testapplication.extension.toPercentage
 import ru.elerphore.testapplication.viewmodel.SecondScreenViewModel
 
 class SecondScreenFragment : Fragment(R.layout.second_screen) {
@@ -33,10 +35,25 @@ class SecondScreenFragment : Fragment(R.layout.second_screen) {
 
         with(SecondScreenBinding.bind(view)) {
 
+            object : CountDownTimer(3600 * 1000, 1) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val secondsUntilFinished = millisUntilFinished / 1000
+
+                    hours.text = (secondsUntilFinished / 3600).toString()
+                    minutes.text = ((secondsUntilFinished % 3600) / 60).toString()
+                    seconds.text = (secondsUntilFinished % 60).toString()
+                }
+
+                override fun onFinish() {
+
+                }
+
+            }.start()
+
             secondScreenViewModel.currentLoadingState.observe(requireActivity()) { progress ->
                 secondScreenViewModel.getReviews().observe(requireActivity()) { list ->
-                    this.progressBar4.progress = (progress.toDouble() / list.size.toDouble() * 100.0).toInt() //list.size.toDouble().times((progress.toDouble() * 10.0) / 100.0).toInt()
-                    this.loadingFromServerPercentage.text = (progress.toDouble() / list.size.toDouble() * 100.0).toString() //list.size.toDouble().times((progress.toDouble() * 10.0) / 100.0).toString()
+                    this.progressBar4.progress = (progress.toDouble() / list.size.toDouble() * 100.0).toInt()
+                    this.loadingFromServerPercentage.text = (progress.toDouble() / list.size.toDouble() * 100.0).toInt().toPercentage()
                 }
             }
 
