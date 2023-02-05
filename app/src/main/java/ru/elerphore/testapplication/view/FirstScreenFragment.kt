@@ -6,26 +6,31 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieAnimationView
+import ru.elerphore.testapplication.AnimatedProgressBar
 import ru.elerphore.testapplication.R
 import ru.elerphore.testapplication.adapter.ProgressBarAdapter
 import ru.elerphore.testapplication.databinding.CustomAlertDialogBinding
 import ru.elerphore.testapplication.databinding.FirstScreenBinding
-import ru.elerphore.testapplication.extension.fakeLoading
 
 class FirstScreenFragment : Fragment(R.layout.first_screen) {
+
+    lateinit var animatedProgressBar: AnimatedProgressBar
+    lateinit var lottieAnimator: LottieAnimationView
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(FirstScreenBinding.bind(view)) {
             goButton.setOnClickListener { findNavController().navigate(R.id.action_FirstScreen_to_SecondScreen) }
 
-            progressBar.fakeLoading()
 
+            animatedProgressBar.fakeLoading()
             progressBar.setOnSeekBarChangeListener(ProgressBarAdapter(progressBarPercentage))
 
-            startAnimationButton.setOnClickListener { animationLottie.resumeAnimation() }
-            stopAnimationButton.setOnClickListener { animationLottie.pauseAnimation() }
-            hideShowAnimationButton.setOnClickListener { animationLottie.isVisible = !animationLottie.isVisible }
+            startAnimationButton.setOnClickListener { lottieAnimator.resumeAnimation() }
+            stopAnimationButton.setOnClickListener { lottieAnimator.pauseAnimation() }
+            hideShowAnimationButton.setOnClickListener { lottieAnimator.isVisible = !lottieAnimator.isVisible }
 
             customerAlert.setOnClickListener {
                 CustomAlertDialogBinding.inflate(layoutInflater).apply {
@@ -38,4 +43,17 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        animatedProgressBar.resume()
+        lottieAnimator.resumeAnimation()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        animatedProgressBar.pause()
+        lottieAnimator.pauseAnimation()
+    }
+
 }

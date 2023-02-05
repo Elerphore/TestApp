@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieAnimationView
+import ru.elerphore.testapplication.AnimatedProgressBar
 import ru.elerphore.testapplication.R
 import ru.elerphore.testapplication.adapter.ProgressBarAdapter
 import ru.elerphore.testapplication.databinding.SecondScreenBinding
@@ -17,6 +19,10 @@ import ru.elerphore.testapplication.viewmodel.SecondScreenViewModel
 class SecondScreenFragment : Fragment(R.layout.second_screen) {
 
     lateinit var secondScreenViewModel: SecondScreenViewModel
+
+    lateinit var firstAnimatedProgressBar: AnimatedProgressBar
+    lateinit var secondAnimatedProgressBar: AnimatedProgressBar
+    lateinit var lottieAnimator: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +43,11 @@ class SecondScreenFragment : Fragment(R.layout.second_screen) {
 
             backArrow.setOnClickListener { findNavController().navigate(R.id.action_SecondScreen_to_FirstScreen) }
 
-            progressBar2.fakeLoading(Long.generateSecondsInRange())
-            progressBar3.fakeLoading(Long.generateSecondsInRange())
+            firstAnimatedProgressBar = AnimatedProgressBar(progressBar2)
+            secondAnimatedProgressBar = AnimatedProgressBar(progressBar3)
+
+            firstAnimatedProgressBar.fakeLoading(Long.generateSecondsInRange())
+            secondAnimatedProgressBar.fakeLoading(Long.generateSecondsInRange())
 
             progressBar2.setOnSeekBarChangeListener(ProgressBarAdapter(textView2))
             progressBar3.setOnSeekBarChangeListener(ProgressBarAdapter(secondProgressBarState))
@@ -48,6 +57,20 @@ class SecondScreenFragment : Fragment(R.layout.second_screen) {
                 progressBar3.fakeLoading(Long.generateSecondsInRange())
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        firstAnimatedProgressBar.resume()
+        secondAnimatedProgressBar.resume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        firstAnimatedProgressBar.pause()
+        secondAnimatedProgressBar.pause()
     }
 }
 
