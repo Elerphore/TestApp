@@ -11,25 +11,16 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import ru.elerphore.testapplication.adapter.ReviewRecyclerAdapter
-import ru.elerphore.testapplication.api.ReviewsController
-import ru.elerphore.testapplication.api.dto.ReviewEntity
-import ru.elerphore.testapplication.api.dto.dbEntity
+import ru.elerphore.testapplication.api.ApiSingleton
 import ru.elerphore.testapplication.db.entity.DB
 import ru.elerphore.testapplication.db.entity.ReviewDBEntity
 import ru.elerphore.testapplication.db.entity.dtoEntity
 import ru.elerphore.testapplication.extension.toPercentage
-import ru.elerphore.testapplication.viewmodel.Config.BASE_URL
 
 class SecondScreenViewModel : ViewModel() {
 
-    val currentLoadingState: MutableLiveData<Int> by lazy {
+    private val currentLoadingState: MutableLiveData<Int> by lazy {
         MutableLiveData<Int>(0)
     }
 
@@ -60,28 +51,9 @@ class SecondScreenViewModel : ViewModel() {
     }
 
     fun fetchReviews() {
-        val gson = Gson()
-
-        val retrofit =
-            Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(BASE_URL)
-                .build()
-
-        val api: ReviewsController = retrofit.create(ReviewsController::class.java)
-
-        CoroutineScope(IO).launch {
-            with(api.reviews().execute()) {
-                when(this.code()) {
-                    200 -> body()?.let {
-                        DB.database!!.reviewDao().deleteAll()
-                        DB.database!!.reviewDao().insertAll(it.raitings.values.map(ReviewEntity::dbEntity))
-                    }
-                    else -> { }
-                }
-            }
-        }
+        ApiSingleton.reviews()
     }
+
 }
 
 object Config {
