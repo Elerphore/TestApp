@@ -11,7 +11,6 @@ import ru.elerphore.testapplication.AnimatedProgressBar
 import ru.elerphore.testapplication.R
 import ru.elerphore.testapplication.adapter.ProgressBarAdapter
 import ru.elerphore.testapplication.databinding.SecondScreenBinding
-import ru.elerphore.testapplication.extension.fakeLoading
 import ru.elerphore.testapplication.extension.generateSecondsInRange
 import ru.elerphore.testapplication.viewmodel.SecondScreenViewModel
 
