@@ -3,12 +3,15 @@ package ru.elerphore.testapplication.view
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import ru.elerphore.testapplication.R
 import ru.elerphore.testapplication.adapter.ProgressBarAdapter
 import ru.elerphore.testapplication.adapter.ReviewRecyclerAdapter
@@ -59,9 +62,17 @@ class SecondScreenFragment : Fragment(R.layout.second_screen) {
 
             secondScreenViewModel.getReviews().observe(requireActivity()) {
                 it.map(ReviewDBEntity::dtoEntity).also {
+
+                    it.forEach { entity ->
+                        entity.imageView = ImageView(requireActivity())
+                        Glide.with(requireActivity()).load(entity.image)
+                        secondScreenViewModel.currentLoadingState.value = secondScreenViewModel.currentLoadingState.value?.plus(1)
+                    }
+
+
                     with(ReviewRecyclerAdapter(secondScreenViewModel, requireActivity(), it)) {
-                        reviewsRecycleView.adapter = this
                         reviewsRecycleView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayout.HORIZONTAL, false)
+                        reviewsRecycleView.adapter = this
                         reviewsRecycleView.setHasFixedSize(true)
                     }
                 }

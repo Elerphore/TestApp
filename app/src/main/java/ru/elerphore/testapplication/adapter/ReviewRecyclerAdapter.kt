@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
@@ -27,7 +28,7 @@ class ReviewRecyclerAdapter(
     private var reviews: List<ReviewEntity> = _reviews
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image: ImageView = itemView.findViewById(R.id.reviewImage)
+        var image: ImageView = itemView.findViewById(R.id.reviewImage)
         val title: TextView = itemView.findViewById(R.id.reviewTitle)
     }
 
@@ -40,8 +41,7 @@ class ReviewRecyclerAdapter(
         holder.title.text = reviews[position].title
         Glide.with(context)
             .load(reviews[position].image)
-            .listener(GlideListener(secondScreenViewModel, reviews.size))
-//            .apply(RequestOptions().override(100, 100))
+            .skipMemoryCache(true)
             .apply(RequestOptions().centerCrop()).into(holder.image)
     }
 
@@ -50,32 +50,4 @@ class ReviewRecyclerAdapter(
     }
 
     override fun getItemCount(): Int = reviews.size
-
-    class GlideListener(private val viewModel: SecondScreenViewModel, private val size: Int) : RequestListener<Drawable> {
-        override fun onLoadFailed(
-            e: GlideException?,
-            model: Any?,
-            target: Target<Drawable>?,
-            isFirstResource: Boolean
-        ): Boolean {
-            println("test1")
-            return false
-        }
-
-        override fun onResourceReady(
-            resource: Drawable?,
-            model: Any?,
-            target: Target<Drawable>?,
-            dataSource: DataSource?,
-            isFirstResource: Boolean
-        ): Boolean {
-
-            if(this.viewModel.currentLoadingState.value != null && this.size > this.viewModel.currentLoadingState.value!!) {
-                this.viewModel.currentLoadingState.value = this.viewModel.currentLoadingState.value?.plus(1)
-            }
-
-            return false
-        }
-
-    }
 }
