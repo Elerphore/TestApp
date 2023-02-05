@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.elerphore.testapplication.R
@@ -24,12 +21,11 @@ import ru.elerphore.testapplication.viewmodel.SecondScreenViewModel
 class SecondScreenFragment : Fragment(R.layout.second_screen) {
 
     lateinit var secondScreenViewModel: SecondScreenViewModel
-    lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         secondScreenViewModel = ViewModelProvider(requireActivity())[SecondScreenViewModel::class.java]
-        secondScreenViewModel.fetchCountries()
+        secondScreenViewModel.fetchReviews()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,9 +33,16 @@ class SecondScreenFragment : Fragment(R.layout.second_screen) {
 
         with(SecondScreenBinding.bind(view)) {
 
-            secondScreenViewModel.getCountries().observe(requireActivity()) {
+            secondScreenViewModel.currentLoadingState.observe(requireActivity()) { progress ->
+                secondScreenViewModel.getReviews().observe(requireActivity()) { list ->
+                    this.progressBar4.progress = (progress.toDouble() / list.size.toDouble() * 100.0).toInt() //list.size.toDouble().times((progress.toDouble() * 10.0) / 100.0).toInt()
+                    this.loadingFromServerPercentage.text = (progress.toDouble() / list.size.toDouble() * 100.0).toString() //list.size.toDouble().times((progress.toDouble() * 10.0) / 100.0).toString()
+                }
+            }
+
+            secondScreenViewModel.getReviews().observe(requireActivity()) {
                 it.map(ReviewDBEntity::dtoEntity).also {
-                    with(ReviewRecyclerAdapter(requireActivity(), it)) {
+                    with(ReviewRecyclerAdapter(secondScreenViewModel, requireActivity(), it)) {
                         reviewsRecycleView.adapter = this
                         reviewsRecycleView.layoutManager = LinearLayoutManager(requireActivity(), LinearLayout.HORIZONTAL, false)
                         reviewsRecycleView.setHasFixedSize(true)

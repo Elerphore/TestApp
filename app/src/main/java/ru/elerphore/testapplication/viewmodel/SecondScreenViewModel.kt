@@ -1,6 +1,7 @@
 package ru.elerphore.testapplication.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -16,9 +17,14 @@ import ru.elerphore.testapplication.db.entity.ReviewDBEntity
 import ru.elerphore.testapplication.viewmodel.Config.BASE_URL
 
 class SecondScreenViewModel : ViewModel() {
-    fun getCountries() : LiveData<List<ReviewDBEntity>> = DB.database!!.reviewDao().all()
 
-    fun fetchCountries() {
+    val currentLoadingState: MutableLiveData<Int> by lazy {
+        MutableLiveData<Int>(0)
+    }
+
+    fun getReviews() : LiveData<List<ReviewDBEntity>> = DB.database!!.reviewDao().all()
+
+    fun fetchReviews() {
         val gson = Gson()
 
         val retrofit =
@@ -32,7 +38,10 @@ class SecondScreenViewModel : ViewModel() {
         CoroutineScope(IO).launch {
             with(api.reviews().execute()) {
                 when(this.code()) {
-                    200 -> body()?.let { DB.database!!.reviewDao().insertAll(it.raitings.values.map(ReviewEntity::dbEntity)) }
+                    200 -> body()?.let {
+                        DB.database!!.reviewDao().deleteAll()
+                        DB.database!!.reviewDao().insertAll(it.raitings.values.map(ReviewEntity::dbEntity))
+                    }
                     else -> { }
                 }
             }
