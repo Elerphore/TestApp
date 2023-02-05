@@ -48,7 +48,7 @@
 
     <LinearLayout
         android:id="@+id/cardView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/customerAlert"
@@ -58,23 +58,25 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_lottie"
-            android:layout_width="140dp"
+            android:layout_width="100dp"
             android:layout_height="160dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
+            android:layout_marginEnd="10dp"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/lottie"
+            android:layout_weight="0.2"
             app:lottie_repeatMode="reverse"
             app:lottie_speed="1" />
 
         <LinearLayout
             android:id="@+id/constraintLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/animation_lottie"
@@ -82,7 +84,7 @@
 
             <Button
                 android:id="@+id/startAnimationButton"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Start Animation"
                 app:layout_constraintEnd_toEndOf="parent"
