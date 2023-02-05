@@ -25,6 +25,9 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
             goButton.setOnClickListener { findNavController().navigate(R.id.action_FirstScreen_to_SecondScreen) }
 
 
+            animatedProgressBar = AnimatedProgressBar(progressBar)
+            lottieAnimator = animationLottie
+
             animatedProgressBar.fakeLoading()
             progressBar.setOnSeekBarChangeListener(ProgressBarAdapter(progressBarPercentage))
 

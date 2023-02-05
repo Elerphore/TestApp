@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.airbnb.lottie.LottieAnimationView
 import ru.elerphore.testapplication.AnimatedProgressBar
 import ru.elerphore.testapplication.R
 import ru.elerphore.testapplication.adapter.ProgressBarAdapter
@@ -22,7 +21,6 @@ class SecondScreenFragment : Fragment(R.layout.second_screen) {
 
     lateinit var firstAnimatedProgressBar: AnimatedProgressBar
     lateinit var secondAnimatedProgressBar: AnimatedProgressBar
-    lateinit var lottieAnimator: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +51,8 @@ class SecondScreenFragment : Fragment(R.layout.second_screen) {
             progressBar3.setOnSeekBarChangeListener(ProgressBarAdapter(secondProgressBarState))
 
             randomizeButton.setOnClickListener {
-                progressBar2.fakeLoading(Long.generateSecondsInRange())
-                progressBar3.fakeLoading(Long.generateSecondsInRange())
+                firstAnimatedProgressBar.fakeLoading(Long.generateSecondsInRange())
+                secondAnimatedProgressBar.fakeLoading(Long.generateSecondsInRange())
             }
         }
     }
