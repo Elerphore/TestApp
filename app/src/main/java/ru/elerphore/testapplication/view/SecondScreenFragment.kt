@@ -64,7 +64,6 @@ class SecondScreenFragment : Fragment(R.layout.second_screen) {
                 it.map(ReviewDBEntity::dtoEntity).also {
 
                     it.forEach { entity ->
-                        entity.imageView = ImageView(requireActivity())
                         Glide.with(requireActivity()).load(entity.image)
                         secondScreenViewModel.currentLoadingState.value = secondScreenViewModel.currentLoadingState.value?.plus(1)
                     }

@@ -4,30 +4,109 @@
     android:padding="20dp"
     android:layout_width="match_parent"
     android:gravity="center"
+    android:background="@drawable/custom_alert_dialog"
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_agree" />
+
         <TextView
+            android:layout_marginTop="10dp"
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Custom Alert"
-            android:textColor="@color/black"
+            android:textColor="@color/purple_700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:padding="10dp"
             android:id="@+id/divider"
+            android:orientation="vertical"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="wrap_content">
+
                 <View
                     android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
                     android:layout_height="2dp"
+                    android:layout_weight="1"
                     android:background="@color/black"
-                    app:layout_constraintBottom_toTopOf="@+id/button"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@+id/button"/>
+
+                <LinearLayout
+                    android:layout_marginTop="-10dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@drawable/blue_filled_circle" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@drawable/blue_circle" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@drawable/red_circle" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/yellow_circle" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="First"
+                            android:textColor="#13A6D3"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:gravity="center"
+                            android:text="Second"
+                            android:textColor="#13A6D3"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="Third"
+                            android:textColor="#B91969"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:gravity="center"
+                            android:text="Fourth"
+                            android:textColor="#E3C714"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
 
         </LinearLayout>
 

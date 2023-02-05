@@ -31,7 +31,7 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
 
             customerAlert.setOnClickListener {
                 CustomAlertDialogBinding.inflate(layoutInflater).apply {
-                    with(AlertDialog.Builder(requireContext()).setView(root).create()) {
+                    with(AlertDialog.Builder(requireContext(), R.style.AppTheme_AlertDialog).setView(root).create()) {
                         closeButton.setOnClickListener { cancel() }
                         setCancelable(false)
                         show()
