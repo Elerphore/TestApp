@@ -8,6 +8,7 @@
 
 
     <LinearLayout
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
@@ -83,6 +84,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
+                style="@style/Widget.Material3.Button.UnelevatedButton"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:textSize="16sp"
                 android:id="@+id/startAnimationButton"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -92,6 +96,9 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
+                style="@style/Widget.Material3.Button.UnelevatedButton"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:textSize="16sp"
                 android:id="@+id/stopAnimationButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -102,6 +109,9 @@
                 app:layout_constraintTop_toBottomOf="@id/startAnimationButton" />
 
             <Button
+                style="@style/Widget.Material3.Button.UnelevatedButton"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:textSize="16sp"
                 android:id="@+id/hideShowAnimationButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,21 +125,27 @@
 
 
     <Button
+        style="@style/Widget.Material3.Button.UnelevatedButton"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:textSize="16sp"
         android:id="@+id/customerAlert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Show custom alert"
+        android:text="@string/show_custom_alert"
         app:layout_constraintBottom_toTopOf="@+id/goButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <Button
+        style="@style/Widget.Material3.Button.UnelevatedButton"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:textSize="16sp"
         android:id="@+id/goButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Go to second screen"
+        android:text="@string/go_to_second_screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

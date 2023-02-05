@@ -14,4 +14,7 @@
     <string name="random_value">Random value</string>
     <string name="random_value_1">Random value 1</string>
     <string name="random_value_2">Random value 2</string>
+    <string name="show_custom_alert">Show custom alert</string>
+    <string name="go_to_second_screen">Go to second screen</string>
+    <string name="randomize_values">Randomize values</string>
 </resources>

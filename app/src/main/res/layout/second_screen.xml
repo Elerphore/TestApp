@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:layout_marginBottom="5dp"
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,6 +56,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:layout_marginBottom="5dp"
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -95,100 +97,102 @@
         app:layout_constraintTop_toBottomOf="@+id/progressBar2"/>
 
     <Button
+        style="@style/Widget.Material3.Button.UnelevatedButton"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:textSize="16sp"
         android:layout_marginTop="25dp"
         android:id="@+id/randomizeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ramdomize values"
+        android:text="@string/randomize_values"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar3" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:layout_marginTop="25dp"
         android:id="@+id/cardView2"
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/randomizeButton">
 
-        <TextView
-            android:gravity="center"
-            android:width="120dp"
-            android:id="@+id/hours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_view_background"
-            android:padding="20dp"
-            android:text="14"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/minutes"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hours"
-            app:layout_constraintEnd_toEndOf="@+id/hours"
-            app:layout_constraintStart_toStartOf="@+id/hours"
-            app:layout_constraintTop_toBottomOf="@+id/hours" />
-
-        <TextView
-            android:gravity="center"
-            android:width="120dp"
-            android:id="@+id/minutes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/text_view_background"
-            android:padding="20dp"
-            android:text="04"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/seconds"
-            app:layout_constraintStart_toEndOf="@+id/hours"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="minutes"
-            app:layout_constraintEnd_toEndOf="@+id/minutes"
-            app:layout_constraintStart_toStartOf="@+id/minutes"
-            app:layout_constraintTop_toBottomOf="@+id/minutes" />
-
-        <TextView
-            android:gravity="center"
-            android:width="120dp"
-            android:id="@+id/seconds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_view_background"
-            android:padding="20dp"
-            android:text="05"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/minutes"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="seconds"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/seconds"
-            app:layout_constraintTop_toBottomOf="@+id/seconds" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:id="@+id/hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_view_background"
+                android:padding="20dp"
+                android:text="14"
+                android:textColor="@color/white"
+                android:textSize="28sp" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/text_view_background"
+                android:padding="20dp"
+                android:text="04"
+                android:textColor="@color/white"
+                android:textSize="28sp"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/seconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_view_background"
+                android:padding="20dp"
+                android:text="05"
+                android:textColor="@color/white"
+                android:textSize="28sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="hours" />
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="minutes"/>
+
+            <TextView
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="seconds"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
@@ -201,6 +205,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
         <LinearLayout
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/progressBar4">
