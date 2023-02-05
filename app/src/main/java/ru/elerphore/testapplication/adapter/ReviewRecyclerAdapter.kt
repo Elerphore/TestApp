@@ -12,13 +12,13 @@ import com.bumptech.glide.request.RequestOptions
 import ru.elerphore.testapplication.R
 import ru.elerphore.testapplication.api.dto.ReviewEntity
 
-class ReviewRecyclerAdapter(val context: Context) : RecyclerView.Adapter<ReviewRecyclerAdapter.Holder>() {
+class ReviewRecyclerAdapter(val context: Context, _reviews: List<ReviewEntity>) : RecyclerView.Adapter<ReviewRecyclerAdapter.Holder>() {
 
-    private val reviews: MutableList<ReviewEntity> = mutableListOf()
+    private var reviews: List<ReviewEntity> = _reviews
 
-    class Holder(itemView: View?) : RecyclerView.ViewHolder(itemView!!) {
-        val image: ImageView? = null
-        val title: TextView? = null
+    class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val image: ImageView = itemView.findViewById(R.id.reviewImage)
+        val title: TextView = itemView.findViewById(R.id.reviewTitle)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -32,8 +32,7 @@ class ReviewRecyclerAdapter(val context: Context) : RecyclerView.Adapter<ReviewR
     }
 
     fun setReview(reviews: List<ReviewEntity>) {
-        this.reviews.clear()
-        this.reviews.addAll(reviews)
+        this.reviews = reviews
     }
 
     override fun getItemCount(): Int = reviews.size
