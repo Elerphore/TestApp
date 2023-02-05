@@ -25,8 +25,8 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
 
             progressBar.setOnSeekBarChangeListener(ProgressBarAdapter(progressBarPercentage))
 
-            startAnimationButton.setOnClickListener { animationLottie.playAnimation() }
-            stopAnimationButton.setOnClickListener { animationLottie.cancelAnimation() }
+            startAnimationButton.setOnClickListener { animationLottie.resumeAnimation() }
+            stopAnimationButton.setOnClickListener { animationLottie.pauseAnimation() }
             hideShowAnimationButton.setOnClickListener { animationLottie.isVisible = !animationLottie.isVisible }
 
             customerAlert.setOnClickListener {

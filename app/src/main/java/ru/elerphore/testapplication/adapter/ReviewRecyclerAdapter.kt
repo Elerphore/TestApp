@@ -41,7 +41,7 @@ class ReviewRecyclerAdapter(
         Glide.with(context)
             .load(reviews[position].image)
             .listener(GlideListener(secondScreenViewModel, reviews.size))
-            .apply(RequestOptions().override(100, 100))
+//            .apply(RequestOptions().override(100, 100))
             .apply(RequestOptions().centerCrop()).into(holder.image)
     }
 
