@@ -20,13 +20,14 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
 
         with(FirstScreenBinding.bind(view)) {
             goButton.setOnClickListener { findNavController().navigate(R.id.action_FirstScreen_to_SecondScreen) }
+
             progressBar.fakeLoading()
 
             progressBar.setOnSeekBarChangeListener(ProgressBarAdapter(progressBarPercentage))
 
             startAnimationButton.setOnClickListener { animationLottie.playAnimation() }
             stopAnimationButton.setOnClickListener { animationLottie.cancelAnimation() }
-            hideShowAnimationButton.setOnClickListener { animationLottie.isVisible = !firstScreenFragment.animationLottie.isVisible }
+            hideShowAnimationButton.setOnClickListener { animationLottie.isVisible = !animationLottie.isVisible }
 
             customerAlert.setOnClickListener {
                 CustomAlertDialogBinding.inflate(layoutInflater).apply {
