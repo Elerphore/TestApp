@@ -13,8 +13,6 @@ import ru.elerphore.testapplication.databinding.FirstScreenBinding
 import ru.elerphore.testapplication.extension.fakeLoading
 
 class FirstScreenFragment : Fragment(R.layout.first_screen) {
-    private lateinit var firstScreenFragment: FirstScreenBinding
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -38,7 +36,6 @@ class FirstScreenFragment : Fragment(R.layout.first_screen) {
                     }
                 }
             }
-
         }
     }
 }
