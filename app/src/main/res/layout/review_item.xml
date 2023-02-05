@@ -16,19 +16,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/review_item_background"
-        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="25dp"
+        android:paddingEnd="35dp"
+        android:paddingStart="10dp"
+        android:paddingVertical="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
+            android:layout_gravity="start"
             android:id="@+id/reviewImage"
+            android:cropToPadding="true"
             android:layout_width="75dp"
             android:layout_height="75dp" />
 
         <TextView
+            android:layout_gravity="center"
             android:id="@+id/reviewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
